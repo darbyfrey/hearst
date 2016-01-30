@@ -31,7 +31,7 @@ module Hearst
     end
 
     def channel
-      @channel ||= connection.create_channel.tap do |chnl|
+      @channel ||= connection.create_channel(nil, 16).tap do |chnl|
         chnl.prefetch(1)
       end
     end
