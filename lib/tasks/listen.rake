@@ -13,8 +13,10 @@ namespace :hearst do
         EM::stop()
       end
 
-      listener = Hearst::Listener.new
-      listener.listen
+      (ENV['HEARST_LISTENER_CONCURRENCY'].to_i || 1).times do
+        listener = Hearst::Listener.new
+        listener.listen
+      end
     }
   end
 end
