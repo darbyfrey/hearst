@@ -18,7 +18,7 @@ module Hearst
       queue.subscribe(manual_ack: true) do |delivery_info, metadata, payload|
         subscriber = subscriber_for(event: delivery_info.routing_key, exchange: delivery_info.exchange)
         if subscriber && subscriber.process(payload)
-          Hearst::Logging.logger.info "#{subscriber.name} processed #{delivery_info.routing_key} from #{delivery_info.exchange}"
+          # Hearst::Logging.logger.info "#{subscriber.name} processed #{delivery_info.routing_key} from #{delivery_info.exchange}"
           channel.acknowledge(delivery_info.delivery_tag)
         else
           channel.nack(delivery_info.delivery_tag, false, true)
