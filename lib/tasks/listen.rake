@@ -14,6 +14,7 @@ namespace :hearst do
       end
 
       if defined?(Rails)
+        Rails.application.eager_load!
         Rails.application.config.after_initialize do
           ActiveRecord::Base.connection_pool.disconnect!
 
